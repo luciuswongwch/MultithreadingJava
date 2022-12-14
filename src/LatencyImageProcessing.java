@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LatencyImageProcessing {
-    public static final String SOURCE_FILE = "./resources/many-flowers.jpg";
-    public static final String DESTINATION_FILE_SINGLE_THREAD = "./out/many-flowers-single-thread.jpg";
-    public static final String DESTINATION_FILE_MULTIPLE_THREAD = "./out/many-flowers-multiple-thread.jpg";
+    public static final String SOURCE_FILE = "./resources/latency/many-flowers.jpg";
+    public static final String DESTINATION_FILE_SINGLE_THREAD = "./out/latency/many-flowers-single-thread.jpg";
+    public static final String DESTINATION_FILE_MULTIPLE_THREAD = "./out/latency/many-flowers-multiple-thread.jpg";
     public static void main(String[] args) throws IOException {
         BufferedImage originalImage = ImageIO.read(new File(SOURCE_FILE));
         BufferedImage resultImageSingleThread = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
