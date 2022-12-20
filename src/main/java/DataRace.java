@@ -1,4 +1,7 @@
 import java.util.Random;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class DataRace {
     private static Random random = new Random();
@@ -23,6 +26,10 @@ public class DataRace {
         private int x = 0, y = 0;
         private volatile int z = 0;
 
+        private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+        private Lock readLock = readWriteLock.readLock();
+        private Lock writeLock = readWriteLock.writeLock();
+
         public void increment() {
             a++;
             b++;
@@ -33,8 +40,9 @@ public class DataRace {
         }
 
         public void checkForDataRace() {
+            // Data race error will show as reading from variables is not blocking task
             try {
-                Thread.sleep(random.nextInt(10));
+                Thread.sleep(random.nextInt(100));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
